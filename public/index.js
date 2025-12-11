@@ -1,1 +1,1 @@
-console.log("Index.js loaded")
+console.log("index.js loaded")

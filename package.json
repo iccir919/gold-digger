@@ -1,0 +1,20 @@
+{
+  "name": "gold-digger",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iccir919/gold-digger.git"
+  },
+  "author": "Neil Ricci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iccir919/gold-digger/issues"
+  },
+  "homepage": "https://github.com/iccir919/gold-digger#readme"
+}
