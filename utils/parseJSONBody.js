@@ -6,7 +6,8 @@ export async function parseJSONBody(req) {
     }
 
     try {
-        return JSON.parse(body)
+        let result = JSON.parse(body)
+        return result
     } catch (err) {
         throw new Error(`Invalid JSON formatL: ${err}`)
     }

@@ -15,7 +15,11 @@ document.getElementById("invest-btn").addEventListener("click", async (e) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ amount: investmentAmount.value })
+            body: JSON.stringify({
+                 timestamp: new Date(),
+                 amount: investmentAmount.value,
+                 price: 0.6 
+            })
         })
 
         if (response.ok) {
