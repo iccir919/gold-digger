@@ -6,16 +6,17 @@ const connectionStatus = document.getElementById("connection-status")
 
 const form = document.querySelector("form")
 const investmentAmount = document.getElementById("investment-amount")
+const investBtn = document.getElementById("invest-btn")
 const formFootnote = document.getElementsByClassName("footnote")[0]
 
 const dialog = document.querySelector("dialog")
-const dialogBtn = document.querySelector("dialog button") 
+const dialogBtn = document.querySelector("dialog button")
+const investmentSummary = document.getElementById("investment-summary") 
 
 eventSource.onmessage = (event) => {
     connectionStatus.textContent = "Live Price 🟢"
 
     const data = JSON.parse(event.data)
-    console.log(data)
     goldPrice = data.price
     priceDisplay.textContent = goldPrice
 }
@@ -27,13 +28,15 @@ eventSource.onerror = () => {
 
 
 
-document.getElementById("invest-btn").addEventListener("click", async (e) => {
+investBtn.addEventListener("click", async (e) => {
     e.preventDefault()
 
 
     try {
         const amountPaid = Number(investmentAmount.value)
         if (amountPaid <= 0) throw new Error("Amount paid is below 0")
+
+        const goldSold = (amountPaid / goldPrice).toFixed(3)
 
         const response = await fetch("/invest", {
             method: "POST",
@@ -44,11 +47,13 @@ document.getElementById("invest-btn").addEventListener("click", async (e) => {
                  timestamp: new Date(),
                  "amount paid": amountPaid,
                  "gold price": goldPrice,
-                 "gold sold": amountPaid / goldPrice
+                 "gold sold": goldSold
             })
         })
 
         if (response.ok) {
+            investmentSummary.textContent = `You just bought ${goldSold} ounces (ozt) for £${amountPaid}.`
+
             dialog.showModal()
             formFootnote.textContent = "* 1oz = 1 troy ounce of 24 Carat Gold"
         } else {

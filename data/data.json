@@ -21,5 +21,11 @@
     "amount paid": 100,
     "gold price": 2167.23,
     "gold sold": 0.04614184927303516
+  },
+  {
+    "timestamp": "2025-12-12T21:52:22.281Z",
+    "amount paid": 50,
+    "gold price": 2131.23,
+    "gold sold": "0.023"
   }
 ]
